@@ -2,7 +2,7 @@
 
 import { sql } from "@/app/lib/db";
 import { revalidatePath } from "next/cache";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 
 /* ---------------- CREATE ---------------- */
