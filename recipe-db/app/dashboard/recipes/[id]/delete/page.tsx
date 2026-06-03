@@ -8,12 +8,15 @@ export default async function DeletePage({
 	const { id } = await params;
 	return (
 		<div className="max-w-md mx-auto mt-20 bg-white p-6 rounded-xl shadow text-center">
-			<h1 className="text-xl font-bold mb-4">Confirm recipe deletion?</h1>
+			<h1 className="text-xl font-bold mb-4 text-gray-900">Confirm recipe deletion?</h1>
 
 			<p className="text-gray-500 mb-6">This action cannot be undone.</p>
 
 			<div className="flex justify-center gap-3">
-				<a href="/dashboard" className="px-4 py-2 bg-gray-100 rounded-md">
+				<a
+					href="/dashboard"
+					className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md transition"
+				>
 					Cancel
 				</a>
 

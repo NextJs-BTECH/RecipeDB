@@ -20,7 +20,6 @@ export async function createRecipe(formData: FormData) {
 	`;
 
 	revalidatePath("/dashboard");
-
 	redirect("/dashboard");
 }
 
@@ -48,17 +47,17 @@ export async function registerUser(formData: FormData) {
 }
 
 /* ---------------- DELETE ---------------- */
-export async function deleteRecipe(id: string) {
-	if (!id) {
-		throw new Error("Invalid or missing id");
-	}
+export async function deleteRecipe(formData: FormData) {
+	const id = String(formData.get("id"));
+
+	if (!id) throw new Error("Missing recipe id");
 
 	await sql`
 		DELETE FROM recipes WHERE id = ${id}
 	`;
 
 	revalidatePath("/dashboard");
-	redirect("/dashboard?deleted=1");
+	redirect("/dashboard");
 }
 
 /* ---------------- EDIT ---------------- */

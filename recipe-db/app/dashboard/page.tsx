@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { auth } from "@/auth";
 import { fetchRecipes } from "@/app/lib/data";
-import { deleteRecipe } from "@/app/lib/actions";
 import LogoutButton from "../ui/recipes/logout-button";
 
 export default async function DashboardPage() {
 	const session = await auth();
+
 	if (!session) {
 		return (
 			<div className="min-h-screen flex items-center justify-center bg-[#F6F6F6]">
@@ -39,14 +39,16 @@ export default async function DashboardPage() {
 			<div className="flex justify-between items-center mb-6">
 				<h1 className="text-2xl font-bold text-[#191919]">Your Recipes</h1>
 
-				<LogoutButton />
+				<div className="flex items-center gap-3">
+					<LogoutButton />
 
-				<Link
-					href="/dashboard/recipes/create"
-					className="bg-[#FF3008] text-white px-5 py-2 rounded-full font-semibold"
-				>
-					+ Add
-				</Link>
+					<Link
+						href="/dashboard/recipes/create"
+						className="bg-[#FF3008] text-white px-5 py-2 rounded-full font-semibold"
+					>
+						+ Add
+					</Link>
+				</div>
 			</div>
 
 			<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -72,12 +74,21 @@ export default async function DashboardPage() {
 									View
 								</Link>
 
-								<Link
-									href={`/dashboard/recipes/${r.id}/delete`}
-									className="text-sm text-red-500 font-medium"
-								>
-									Delete
-								</Link>
+								<div className="flex gap-3">
+									<Link
+										href={`/dashboard/recipes/${r.id}/edit`}
+										className="text-blue-500 font-medium text-sm"
+									>
+										Edit
+									</Link>
+
+									<Link
+										href={`/dashboard/recipes/${r.id}/delete`}
+										className="text-sm text-red-500 font-medium"
+									>
+										Delete
+									</Link>
+								</div>
 							</div>
 						</div>
 					</div>
